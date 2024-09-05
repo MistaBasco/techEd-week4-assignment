@@ -40,6 +40,14 @@ h1 {
   color: black;
 }
 
+#gb-form textarea {
+  margin-bottom: 5px;
+  padding: 20px;
+  background-color: beige;
+  color: black;
+  word-wrap: break-word;
+}
+
 #gb-form button {
   height: 2em;
   margin: 5px 0px 20px 0px;
