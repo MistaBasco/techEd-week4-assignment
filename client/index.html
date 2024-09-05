@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+    <title>GuestBook</title>
+  </head>
+  <body>
+    <h1>-!GuestBook!-</h1>
+    <div id="body-box">
+      <div id="form-container">
+        <form id="gb-form">
+          <label for="sendername">Sender Name</label>
+          <input
+            type="text"
+            placeholder="Sender name here"
+            name="sendername"
+            id="sendername"
+            class="input-text"
+          />
+          <label for="senderroom">Sender Room</label>
+          <input
+            type="number"
+            min="001"
+            max="470"
+            placeholder="Sender room number. If not a guest type N/A"
+            name="senderroom"
+            id="senderroom"
+            class="input-text"
+          />
+          <label for="receivername">Recipient Name</label>
+          <input
+            type="text"
+            placeholder="Recipient name here"
+            name="receivername"
+            id="receivername"
+            class="input-text"
+          />
+          <label for="receiverroom">Recipient Room</label>
+          <input
+            type="number"
+            min="001"
+            max="470"
+            placeholder="Recipient room number here"
+            name="receiverroom"
+            id="receiverroom"
+            class="input-text"
+          />
+          <label for="messagebody">Message</label>
+          <input
+            type="text"
+            placeholder="Type your message here"
+            name="messagebody"
+            id="messagebody"
+            class="input-text"
+            style="height: 150px"
+          />
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+      <div id="guest-book"></div>
+    </div>
+  </body>
+</html>
