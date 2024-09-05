@@ -6,7 +6,7 @@ const serverURL = "https://teched-week4-assignment.onrender.com";
 const form = document.getElementById("gb-form");
 
 async function getGuestBookData() {
-  const promise = await fetch(serverURL + ":8080/messages");
+  const promise = await fetch(serverURL + "/messages");
   promiseData = await promise.json();
   console.log(promiseData);
   guestBookContainer.innerHTML = "";
@@ -90,7 +90,7 @@ async function postGuestBookData(event) {
   const formData = new FormData(form);
   const data = Object.fromEntries(formData);
 
-  await fetch(serverURL + ":8080/messages", {
+  await fetch(serverURL + "/messages", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
