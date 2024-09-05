@@ -15,7 +15,6 @@ const db = new pg.Pool({
 });
 // ROUTES
 
-//Template route -- make sure to change this
 app.get("/", (request, response) => {
   response.json("This is the home route. Wow. So Amaze. So Incredulous");
 });
