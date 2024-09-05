@@ -1,7 +1,7 @@
 const guestBookContainer = document.getElementById("guest-book");
 // Swap between serverURLs when running locally/live
-const serverURL = "Http://localhost";
-// const serverURL = "insert render server url here";
+//const serverURL = "Http://localhost";
+const serverURL = "https://teched-week4-assignment.onrender.com";
 
 const form = document.getElementById("gb-form");
 
@@ -11,7 +11,7 @@ async function getGuestBookData() {
   console.log(promiseData);
   guestBookContainer.innerHTML = "";
   promiseData.forEach((message) => {
-    //Declare html elements and assign classes accordingly
+    //Declare html elements ,assign classes and append to container divs accordingly
     const messageContainer = document.createElement("div");
     messageContainer.classList.add("message-container");
 
