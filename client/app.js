@@ -7,7 +7,7 @@ const form = document.getElementById("gb-form");
 
 async function getGuestBookData() {
   const promise = await fetch(serverURL + "/messages");
-  promiseData = await promise.json();
+  const promiseData = await promise.json();
   console.log(promiseData);
   guestBookContainer.innerHTML = "";
   promiseData.forEach((message) => {
