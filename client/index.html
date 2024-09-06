@@ -8,11 +8,13 @@
     <title>GuestBook</title>
   </head>
   <body>
-    <h1>-!GuestBook!-</h1>
+    <h1>GuestBook</h1>
     <div id="body-box">
       <div id="form-container">
         <form id="gb-form">
-          <label for="sendername">Sender Name</label>
+          <label for="sendername"
+            >Sender Name <span id="sn-warning" class="warning"></span
+          ></label>
           <input
             type="text"
             placeholder="Sender name here"
@@ -20,7 +22,9 @@
             id="sendername"
             class="input-text"
           />
-          <label for="senderroom">Sender Room</label>
+          <label for="senderroom"
+            >Sender Room <span id="sr-warning" class="warning"></span
+          ></label>
           <input
             type="number"
             min="000"
@@ -30,7 +34,9 @@
             id="senderroom"
             class="input-text"
           />
-          <label for="receivername">Recipient Name</label>
+          <label for="receivername"
+            >Recipient Name <span id="rn-warning" class="warning"></span
+          ></label>
           <input
             type="text"
             placeholder="Recipient name here"
@@ -38,7 +44,9 @@
             id="receivername"
             class="input-text"
           />
-          <label for="receiverroom">Recipient Room</label>
+          <label for="receiverroom"
+            >Recipient Room <span id="rr-warning" class="warning"></span
+          ></label>
           <input
             type="number"
             min="000"
@@ -48,7 +56,9 @@
             id="receiverroom"
             class="input-text"
           />
-          <label for="messagebody">Message</label>
+          <label for="messagebody"
+            >Message <span id="mb-warning" class="warning"></span
+          ></label>
           <textarea
             type="text"
             placeholder="Type your message here"

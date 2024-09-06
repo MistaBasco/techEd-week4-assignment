@@ -11,6 +11,13 @@ body {
 h1 {
   margin-bottom: 5svh;
   text-align: center;
+  text-shadow: black 1px 2px 3px;
+}
+
+.warning {
+  color: red;
+  font-size: 0.8em;
+  font-weight: 450;
 }
 
 #body-box {
@@ -47,6 +54,7 @@ h1 {
   background-color: beige;
   color: black;
   word-wrap: break-word;
+  resize: none;
 }
 
 #gb-form button {
@@ -63,35 +71,46 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  min-width: fit-content;
+  width: 95svw;
   max-width: 768px;
 }
 #guest-book h2 {
   color: darkgreen;
   font-size: 1em;
+  margin-left: 3px;
 }
 #guest-book h3 {
   color: black;
   font-size: 0.8em;
   font-weight: normal;
+  text-wrap: wrap;
+  margin-left: 3px;
 }
 .message-container {
   display: flex;
   flex-direction: column;
   background-color: goldenrod;
-  border: 2px solid black;
+  border-radius: 8px;
 }
 
 .container {
   display: flex;
   align-items: baseline;
-  border: 1px solid slategrey;
+  border: 1px solid rgb(118, 118, 144);
   flex-wrap: wrap;
   padding-top: 1svh;
 }
 
 .container > * {
   white-space: pre;
+}
+
+.message-container .container:first-child {
+  border-radius: 8px 8px 0px 0px;
+}
+
+.message-container .container:last-child {
+  border-radius: 0px 0px 8px 8px;
 }
 
 @media (min-width: 768px) {

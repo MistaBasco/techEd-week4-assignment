@@ -1,14 +1,28 @@
+//Declarations & Pulls
 const guestBookContainer = document.getElementById("guest-book");
+
 // Swap between serverURLs when running locally/live
-//const serverURL = "Http://localhost";
+// const serverURL = "http://localhost:8080";
 const serverURL = "https://teched-week4-assignment.onrender.com";
 
 const form = document.getElementById("gb-form");
 
+const snWarning = document.getElementById("sn-warning");
+const srWarning = document.getElementById("sr-warning");
+const rnWarning = document.getElementById("rn-warning");
+const rrWarning = document.getElementById("rr-warning");
+const mbWarning = document.getElementById("mb-warning");
+const sendernameData = document.getElementById("sendername");
+const senderroomData = document.getElementById("senderroom");
+const receivernameData = document.getElementById("receivername");
+const receiverroomData = document.getElementById("receiverroom");
+const messagebodyData = document.getElementById("messagebody");
+
+//Functions
 async function getGuestBookData() {
   const promise = await fetch(serverURL + "/messages");
   const promiseData = await promise.json();
-  console.log(promiseData);
+  // console.log(promiseData);
   guestBookContainer.innerHTML = "";
   promiseData.forEach((message) => {
     //Declare html elements ,assign classes and append to container divs accordingly
@@ -67,7 +81,7 @@ async function getGuestBookData() {
     messageBodyContainer.classList.add("container");
 
     const messageBodyLabel = document.createElement("h2");
-    messageBodyLabel.innerText = "Message:                ";
+    messageBodyLabel.innerText = "Message:               ";
 
     const messageBody = document.createElement("h3");
     messageBody.innerText = message.message;
@@ -90,6 +104,17 @@ async function postGuestBookData(event) {
   const formData = new FormData(form);
   const data = Object.fromEntries(formData);
 
+  if (
+    data.sendername == "" ||
+    data.senderroom == "" ||
+    data.receivername == "" ||
+    data.receiverroom == "" ||
+    data.messagebody == ""
+  ) {
+    alert("Please fill in all fields before posting");
+    return;
+  }
+
   await fetch(serverURL + "/messages", {
     method: "POST",
     headers: {
@@ -97,9 +122,79 @@ async function postGuestBookData(event) {
     },
     body: JSON.stringify(data),
   });
-  const inputText = document.querySelectorAll(".input-text");
   form.reset();
   getGuestBookData();
 }
 
-form.addEventListener("submit", postGuestBookData);
+function validateField(
+  field,
+  warningElement,
+  minValue = null,
+  maxValue = null
+) {
+  const value = field.value.trim(); // Trim to avoid whitespace issues
+  if (value === "") {
+    warningElement.innerText = "This field is required";
+    return false;
+  }
+  // Check for number field constraints
+  if (minValue !== null && maxValue !== null) {
+    const numericValue = Number(value);
+    if (
+      isNaN(numericValue) ||
+      numericValue < minValue ||
+      numericValue > maxValue
+    ) {
+      warningElement.innerText = `Value must be between ${minValue} and ${maxValue}`;
+      return false;
+    }
+  }
+  warningElement.innerText = ""; // Clear warning if valid
+  return true;
+}
+
+//Event Listeners
+// console.log(form);
+console.log(sendernameData);
+sendernameData.addEventListener("input", () =>
+  validateField(sendernameData, snWarning)
+);
+senderroomData.addEventListener("input", () =>
+  validateField(senderroomData, srWarning, 0, 470)
+);
+receivernameData.addEventListener("input", () =>
+  validateField(receivernameData, rnWarning)
+);
+receiverroomData.addEventListener("input", () =>
+  validateField(receiverroomData, rrWarning, 0, 470)
+);
+messagebodyData.addEventListener("input", () =>
+  validateField(messagebodyData, mbWarning)
+);
+
+console.log(form);
+form.addEventListener("submit", () => {
+  const isSenderNameValid = validateField(sendernameData, snWarning);
+  const isSenderRoomValid = validateField(senderroomData, srWarning, 0, 470);
+  const isReceiverNameValid = validateField(receivernameData, rnWarning);
+  const isReceiverRoomValid = validateField(
+    receiverroomData,
+    rrWarning,
+    0,
+    470
+  );
+  const isMessageBodyValid = validateField(messagebodyData, mbWarning);
+
+  // If all fields are valid, post the data
+  if (
+    isSenderNameValid &&
+    isSenderRoomValid &&
+    isReceiverNameValid &&
+    isReceiverRoomValid &&
+    isMessageBodyValid
+  ) {
+    postGuestBookData(); // Only post data if validation passes
+  } else {
+    alert("Please correct the errors in the form before submitting.");
+  }
+});
