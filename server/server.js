@@ -19,7 +19,7 @@ app.get("/", (request, response) => {
   response.json("This is the home route. Wow. So Amaze. So Incredulous");
 });
 
-app.get("/messages", async (request, response) => {
+app.get("/messages", async (_, response) => {
   const promise = await db.query("SELECT * FROM guestbook");
   response.json(promise.rows);
 });
@@ -36,6 +36,10 @@ app.post("/messages", async (request, response) => {
     ]
   );
   response.json(newMessage);
+});
+
+app.delete("/messages", async (request, response) => {
+  // This was supposed to do stuff, but time...
 });
 
 app.listen(8080, () => console.log("Server is listening on port 8080..."));
